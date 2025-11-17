@@ -14,14 +14,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 public class api_get_Test extends TestRunner{
-    static Playwright playwright = Playwright.create();
-    static Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
-    //static Page page = browser.newPage();
-    static APIRequestContext apiRequest;
-    static BrowserContext browserContext = browser.newContext(new Browser.NewContextOptions()
-        .setUserAgent("playwright-java-test")
-        .setExtraHTTPHeaders(Map.of("ngrok-skip-browser-warning", "true")
-        ));
+    
     String homePage = "https://4693ad88a1bd.ngrok-free.app";
 
     @Test
@@ -57,7 +50,7 @@ public class api_get_Test extends TestRunner{
     @Test
     @DisplayName("API => GET,200 Projects route")
     @AllureId("Test-Case-4")
-    @Description("API ")
+    @Description("API ") 
     void getProjectsRoute(){
         APIResponse response = page.request().get(homePage + "/projects");
         assertEquals(200,response.status());
@@ -94,7 +87,7 @@ public class api_get_Test extends TestRunner{
     void getResumeRoute(){
         APIResponse response = page.request().get(homePage + "/documents/Isidro-Zapata-Resume.pdf");
         assertEquals(200,response.status());
-        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
         assertEquals("application/pdf", response.headers().get("content-type"));
 
     }

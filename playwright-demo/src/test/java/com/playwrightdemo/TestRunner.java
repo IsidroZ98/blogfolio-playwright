@@ -4,47 +4,67 @@ import com.microsoft.playwright.*;
 import com.microsoft.playwright.APIRequest.NewContextOptions;
 import com.microsoft.playwright.options.AriaRole;
 
-import io.qameta.allure.AllureId;
-import io.qameta.allure.Description;
-
 import java.util.Map;
-
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 public class TestRunner {
     protected static Playwright playwright;
     protected static Browser browser;
-    protected static Page page;
+    protected Page page;
     protected static APIRequestContext apiRequest;
-    protected static BrowserContext browserContext;
+    protected BrowserContext browserContext;
 
 
     @BeforeAll
     static void setupBeforeClass(){
         playwright = Playwright.create();
+
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
         
-        browserContext = browser.newContext(new Browser.NewContextOptions()
+        /*browserContext = browser.newContext(new Browser.NewContextOptions()
         .setUserAgent("playwright-java-test")
         .setExtraHTTPHeaders(Map.of("ngrok-skip-browser-warning", "true")
         ));
+        */
         //page = browser.newPage();
-        page = browserContext.newPage();
+        //page = browserContext.newPage();
         
         apiRequest = playwright.request().newContext(new NewContextOptions().setBaseURL("https://4693ad88a1bd.ngrok-free.app"));
         
     }
+    @BeforeEach
+    void beforeEach(){
+        browserContext = browser.newContext(new Browser.NewContextOptions()
+        .setUserAgent("playwright-java-test")
+        .setExtraHTTPHeaders(Map.of("ngrok-skip-browser-warning", "true")
+        ));
+        page = browserContext.newPage();
+
+    }
     @AfterAll
     public static void tearDownAfterClass(){
-        page.close();
+        // check sequence
+        //page.close();
         browser.close();
         apiRequest.dispose();
         playwright.close();
-        browserContext.close();
+        //browserContext.close();
         
     }
-    
+    @AfterEach
+    void afterEach(){
+        browserContext.close();
+    }
+    protected void bypassNgrokWarning(){
+        Locator visitBtn = page.getByRole(AriaRole.BUTTON,
+                new Page.GetByRoleOptions().setName("Visit Site"));
+
+        if (visitBtn.isVisible()) {
+            visitBtn.click();
+            page.waitForLoadState();
+        }
+    }
 
 }

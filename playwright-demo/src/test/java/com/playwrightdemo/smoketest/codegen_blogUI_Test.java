@@ -12,13 +12,7 @@ import io.qameta.allure.AllureId;
 import io.qameta.allure.Description;
 
 public class codegen_blogUI_Test extends TestRunner{
-    static Playwright playwright = Playwright.create();
-    static Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
-    //static Page page = browser.newPage();
-    static BrowserContext browserContext = browser.newContext(new Browser.NewContextOptions()
-        .setUserAgent("playwright-java-test")
-        .setExtraHTTPHeaders(Map.of("ngrok-skip-browser-warning", "true")
-        ));
+    
     static String homePage = "https://4693ad88a1bd.ngrok-free.app";
     // Smoke test local and +1 ping to ngrok limiter
     @Test

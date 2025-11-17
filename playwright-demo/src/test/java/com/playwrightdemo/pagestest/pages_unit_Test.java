@@ -15,19 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Map;
 public class pages_unit_Test extends TestRunner{
     
-    static Playwright playwright = Playwright.create();
-    static Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
-    //static Page page = browser.newPage();
+    
+    private final String homePage = "https://4693ad88a1bd.ngrok-free.app";
+    private final String aboutmePage = "https://4693ad88a1bd.ngrok-free.app/about";
+    private final String projectsPage = "https://4693ad88a1bd.ngrok-free.app/projects";
+    private final String experiencePage = "https://4693ad88a1bd.ngrok-free.app/experience";
+    private final String blogPage = "https://4693ad88a1bd.ngrok-free.app/blog";
+    // Write the tests for these pages
 
-    static BrowserContext browserContext = browser.newContext(new Browser.NewContextOptions()
-        .setUserAgent("playwright-java-test")
-        .setExtraHTTPHeaders(Map.of("ngrok-skip-browser-warning", "true")
-        ));
-    static String homePage = "https://4693ad88a1bd.ngrok-free.app";
-    static String aboutmePage = "https://4693ad88a1bd.ngrok-free.app/about";
-    static String projectsPage = "https://4693ad88a1bd.ngrok-free.app/projects";
-    static String experiencePage = "https://4693ad88a1bd.ngrok-free.app/experience";
-    static String blogPage = "https://4693ad88a1bd.ngrok-free.app/blog";
     /*
      * Home page
      */
@@ -37,6 +32,7 @@ public class pages_unit_Test extends TestRunner{
     @Description("Assert Home Page Title")
     public void homePage_test(){
         page.navigate(homePage);
+        bypassNgrokWarning();
         //page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Visit Site")).click();
         assertEquals("Izzy's Blog-Portfolio", page.title(), "Page title should match expected");
     }
@@ -172,6 +168,36 @@ public class pages_unit_Test extends TestRunner{
         assertEquals(("insta-snapinsta-download-tool"),portfolioProjectHead.textContent(),"Instagram snapinsta tool project card should be present");
         assertTrue(portfolioProjectParagraph.textContent().contains("Instagram stole my idea"),"Project desc should read this was my personal solution to downloading");
     }
+    @Test
+    @DisplayName("Experience => Experience page and title should be present")
+    @AllureId("Test-Case-22")
+    @Description("Assert Expreience page title should be present")
+    public void experience_pageTitleTest(){
+        page.navigate(experiencePage);
+        // need to add element id to blogFolio page 
+        Locator pageHead = page.locator("id=page-title");
+        Locator pageMessage = page.locator("id=page-message");
+        assertEquals(("Experience"),pageHead.textContent(),"Experience title page should be present");
+        assertTrue(pageMessage.textContent().contains("Software Development Engineer in Test"),"Experience page message should be present");
+    }
+    /*
+     * TODO: Add Experience cards test verification
+     */
+    @Test
+    @DisplayName("Blog => Blog Page and Title should be present")
+    @AllureId("Test Case 23")
+    @Description("Assert Blog page title should be present")
+    public void blog_pageTitleTest(){
+        page.navigate(blogPage);
+        Locator pageHead = page.locator("id=page-title");
+        Locator pageMessage = page.locator("id=page-message");
+        assertEquals(("Blogging things and Linux!!!"),pageHead.textContent(),"Blog title page should be present");
+        assertTrue(pageMessage.textContent().contains("I use Arch BTW :)"),"Blog should include page message");
+        
+    }
+    /*
+     * TODO: Add blog accordion and panel verification
+     */
     /*
      * TODO: Add project link verification
      */

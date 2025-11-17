@@ -19,4 +19,6 @@
 
 ### 11/12/25
     - [] Todo move all localhost tests to live site to test and trigger reliable tests
+    - [] Issue #1 allure report is failing and actions are failing due to Allure report not being created
+    - [] Issue #1 allure report in testing is not 100% and fails due to some unexpected issue
     
