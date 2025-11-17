@@ -34,9 +34,9 @@
     <dependency>
         <groupId>io.qameta.allure</groupId>
         <artifactId>allure-junit5</artifactId>
-        <version>2.30.0</version>
-        <scope>test</scope>
-      </dependency>
+        <version>2.25.0</version>
+    </dependency>
+
       <!-- https://mvnrepository.com/artifact/io.github.uchagani/allure-playwright-java -->
     <dependency>
         <groupId>io.github.uchagani</groupId>
