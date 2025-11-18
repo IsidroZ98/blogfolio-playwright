@@ -36,7 +36,6 @@
         <artifactId>allure-junit5</artifactId>
         <version>2.25.0</version>
     </dependency>
-
       <!-- https://mvnrepository.com/artifact/io.github.uchagani/allure-playwright-java -->
     <dependency>
         <groupId>io.github.uchagani</groupId>
@@ -47,7 +46,6 @@
 
   <build>
     <plugins>
-
       <!-- JUnit 5 test runner with Allure listener -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -67,8 +65,7 @@
           </properties>
         </configuration>
       </plugin>
-
-      <!-- Jacoco coverage -->
+      <!-- Jacoco coverage even though reporting 0 right now -->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
@@ -89,7 +86,6 @@
           </execution>
         </executions>
       </plugin>
-
       <!-- Allure Maven Plugin -->
       <plugin>
         <groupId>io.qameta.allure</groupId>
@@ -100,8 +96,6 @@
           <reportDirectory>target/site/allure-maven-plugin</reportDirectory>
         </configuration>
       </plugin>
-
-
     </plugins>
   </build>
 </project>
