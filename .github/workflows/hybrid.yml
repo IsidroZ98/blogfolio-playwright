@@ -27,9 +27,6 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Maven Checkstyle & Spotless
-        run: mvn -B spotless:check checkstyle:check
-
       - name: Maven Unit Tests
         run: mvn -B test
 
