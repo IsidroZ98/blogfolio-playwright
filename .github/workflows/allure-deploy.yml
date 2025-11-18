@@ -32,34 +32,27 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
-      - name: Run Maven tests (this generates allure-results)
+      - name: Install Allure CLI
+        run: |
+          sudo apt update
+          sudo apt install -y unzip
+          wget https://github.com/allure-framework/allure2/releases/download/2.29.0/allure-2.29.0.zip
+          unzip allure-2.29.0.zip -d /opt/allure
+          sudo ln -s /opt/allure/allure-2.29.0/bin/allure /usr/local/bin/allure
+
+      - name: Run Maven tests
         run: |
           cd playwright-demo
           mvn clean test
 
-      - name: Debug — Show allure-results folder
-        run: |
-          echo "Contents of allure-results:"
-          ls -R playwright-demo/allure-results || echo "allure-results NOT FOUND"
-
-      - name: Generate Allure HTML report
+      - name: Generate HTML Allure report
         run: |
           cd playwright-demo
-          mvn allure:report
+          allure generate allure-results --clean -o target/allure-report
 
-      - name: Debug — Show generated HTML report
+      - name: Debug — show final report
         run: |
-          echo "Contents of generated Allure HTML report:"
-          ls -R playwright-demo/target/site/allure-maven-plugin || echo "HTML report NOT FOUND"
-      - name: Debug — verify report exists
-        run: |
-          echo "Checking for index.html"
-          if [ -f playwright-demo/target/site/allure-maven-plugin/index.html ]; then
-            echo "FOUND index.html"
-          else
-            echo "index.html NOT FOUND"
-            ls -R playwright-demo/target/site/allure-maven-plugin || echo "Report folder missing"
-          fi
+          ls -R playwright-demo/target/allure-report || echo "Report missing!"
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
@@ -67,7 +60,7 @@ jobs:
       - name: Upload Allure Report artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "playwright-demo/target/site/allure-maven-plugin"
+          path: "playwright-demo/target/allure-report"
 
       - name: Deploy to GitHub Pages
         id: deploy
