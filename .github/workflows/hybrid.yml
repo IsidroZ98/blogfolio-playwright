@@ -27,6 +27,11 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
+      - name: Maven Checkstyle & Spotless
+        run: |
+          cd playwright-demo
+          mvn -B spotless:check checkstyle:check
+
       - name: Maven Unit Tests
         run: mvn -B test
 
@@ -51,7 +56,9 @@ jobs:
           allure --version
 
       - name: Build + Playwright Tests (macOS)
-        run: mvn -B verify
+        run: |
+          cd playwright-demo
+          mvn -B verify
 
 
   linux_build:
@@ -76,7 +83,9 @@ jobs:
           allure --version
 
       - name: Build + Playwright Tests (Arch Linux)
-        run: mvn -B verify
+        run: |
+          cd playwright-demo
+          mvn -B verify
 
 
   safety_gate:
