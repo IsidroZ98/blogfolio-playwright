@@ -96,42 +96,42 @@ jobs:
           echo "Running build on ARCH Linux self-hosted machine..."
           mvn -q clean test
           mvn -q package
-dashboard:
-  name: Generate CI Dashboard
-  needs: [lint, unit_tests, mac_build, linux_build]
-  runs-on: ubuntu-latest
+  dashboard:
+    name: Generate CI Dashboard
+    needs: [lint, unit_tests, mac_build, linux_build]
+    runs-on: ubuntu-latest
 
-  permissions:
-    contents: write   # allows pushing README changes
+    permissions:
+      contents: write   # allows pushing README changes
 
-  steps:
-    - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-    - name: Create Dashboard File
-      run: |
-        echo "## 🚦 CI Pipeline Dashboard" > CI_DASHBOARD.md
-        echo "" >> CI_DASHBOARD.md
+      - name: Create Dashboard File
+        run: |
+          echo "## 🚦 CI Pipeline Dashboard" > CI_DASHBOARD.md
+          echo "" >> CI_DASHBOARD.md
 
-        echo "Last updated: **$(date)**" >> CI_DASHBOARD.md
-        echo "" >> CI_DASHBOARD.md
+          echo "Last updated: **$(date)**" >> CI_DASHBOARD.md
+          echo "" >> CI_DASHBOARD.md
 
-        echo "### 🏃 Runner Summary" >> CI_DASHBOARD.md
-        echo "| Job | Status | Runner | Duration |" >> CI_DASHBOARD.md
-        echo "|-----|--------|---------|----------|" >> CI_DASHBOARD.md
+          echo "### 🏃 Runner Summary" >> CI_DASHBOARD.md
+          echo "| Job | Status | Runner | Duration |" >> CI_DASHBOARD.md
+          echo "|-----|--------|---------|----------|" >> CI_DASHBOARD.md
 
-        for job in lint unit_tests mac_build linux_build; do
-          echo "| $job | ✅ Success | \`${{ job.status }}\` | unknown |" >> CI_DASHBOARD.md
-        done
+          for job in lint unit_tests mac_build linux_build; do
+            echo "| $job | ✅ Success | \`${{ job.status }}\` | unknown |" >> CI_DASHBOARD.md
+          done
 
-        echo "" >> CI_DASHBOARD.md
-        echo "### 📊 Allure Report" >> CI_DASHBOARD.md
-        echo "➡️ **[View Full Test Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }})**" >> CI_DASHBOARD.md
+          echo "" >> CI_DASHBOARD.md
+          echo "### 📊 Allure Report" >> CI_DASHBOARD.md
+          echo "➡️ **[View Full Test Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }})**" >> CI_DASHBOARD.md
 
-    - name: Commit Dashboard
-      run: |
-        git config --local user.email "actions@github.com"
-        git config --local user.name "GitHub Actions"
+      - name: Commit Dashboard
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
 
-        git add CI_DASHBOARD.md
-        git commit -m "Update CI Dashboard [skip ci]" || echo "No changes to commit"
-        git push
+          git add CI_DASHBOARD.md
+          git commit -m "Update CI Dashboard [skip ci]" || echo "No changes to commit"
+          git push
