@@ -5,39 +5,133 @@ on:
   pull_request:
 
 jobs:
-  # ------------------------------
-  # 1. Light, fast checks (cloud)
-  # ------------------------------
+
   lint:
     name: Lint (Cloud)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm install
-      - run: npm run lint
-
+      - run: echo "No frontend linting for Java project"
+  
   unit_tests:
     name: Unit Tests (Cloud)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm install
-      - run: npm test
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Run Maven tests
+        run: mvn -q -DskipTests=false test
 
   mac_build:
-    name: MacOS Build (Self-hosted Mac)
+    name: macOS Build (Self-hosted Mac)
     runs-on: [self-hosted, macos]
     needs: [lint, unit_tests]
+
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Running on my REAL Mac..."
-      - run: make build
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # macOS installation uses brew
+      - name: Install Allure CLI (macOS)
+        run: |
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            echo "Detected macOS → installing Allure via Homebrew"
+            brew install allure
+          fi
+
+      - name: Run macOS Build
+        run: |
+          echo "Running on REAL macOS self-hosted machine..."
+          mvn -q clean test
+          mvn -q package
+
 
   linux_build:
-    name: Linux Build (Self-hosted x86 Linux)
+    name: Linux Build (Self-hosted Linux)
     runs-on: [self-hosted, linux]
     needs: [lint, unit_tests]
+
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Running Linux build..."
-      - run: make build-linux
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install Allure CLI (Linux)
+        run: |
+          if command -v pacman &> /dev/null; then
+            echo "Detected Arch Linux → using pacman"
+            sudo pacman -Sy --noconfirm unzip wget
+            wget https://github.com/allure-framework/allure2/releases/download/2.29.0/allure-2.29.0.zip
+            sudo mkdir -p /opt/allure
+            sudo unzip -o allure-2.29.0.zip -d /opt/allure
+            sudo ln -sf /opt/allure/allure-2.29.0/bin/allure /usr/local/bin/allure
+
+          else
+            echo "Detected Debian/Ubuntu → using apt"
+            sudo apt update
+            sudo apt install -y unzip wget
+            wget https://github.com/allure-framework/allure2/releases/download/2.29.0/allure-2.29.0.zip
+            sudo mkdir -p /opt/allure
+            sudo unzip -o allure-2.29.0.zip -d /opt/allure
+            sudo ln -sf /opt/allure/allure-2.29.0/bin/allure /usr/local/bin/allure
+          fi
+
+      - name: Run Linux Build
+        run: |
+          echo "Running build on ARCH Linux self-hosted machine..."
+          mvn -q clean test
+          mvn -q package
+dashboard:
+  name: Generate CI Dashboard
+  needs: [lint, unit_tests, mac_build, linux_build]
+  runs-on: ubuntu-latest
+
+  permissions:
+    contents: write   # allows pushing README changes
+
+  steps:
+    - uses: actions/checkout@v4
+
+    - name: Create Dashboard File
+      run: |
+        echo "## 🚦 CI Pipeline Dashboard" > CI_DASHBOARD.md
+        echo "" >> CI_DASHBOARD.md
+
+        echo "Last updated: **$(date)**" >> CI_DASHBOARD.md
+        echo "" >> CI_DASHBOARD.md
+
+        echo "### 🏃 Runner Summary" >> CI_DASHBOARD.md
+        echo "| Job | Status | Runner | Duration |" >> CI_DASHBOARD.md
+        echo "|-----|--------|---------|----------|" >> CI_DASHBOARD.md
+
+        for job in lint unit_tests mac_build linux_build; do
+          echo "| $job | ✅ Success | \`${{ job.status }}\` | unknown |" >> CI_DASHBOARD.md
+        done
+
+        echo "" >> CI_DASHBOARD.md
+        echo "### 📊 Allure Report" >> CI_DASHBOARD.md
+        echo "➡️ **[View Full Test Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }})**" >> CI_DASHBOARD.md
+
+    - name: Commit Dashboard
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+
+        git add CI_DASHBOARD.md
+        git commit -m "Update CI Dashboard [skip ci]" || echo "No changes to commit"
+        git push
