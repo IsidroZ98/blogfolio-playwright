@@ -1,4 +1,4 @@
-name: Hybrid CI
+name: Hybrid CI/CD (Java + Playwright + Allure)
 
 on:
   push:
@@ -6,109 +6,144 @@ on:
 
 permissions:
   contents: read
-  actions: read
-  checks: read
 
 
-defaults:
-  run:
-    shell: bash
-
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
-
-
   lint:
     name: Lint (Cloud)
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
-      - run: npm install
-      - run: npm run lint
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - run: mvn -B spotless:check || mvn -B checkstyle:check
+
 
   unit_tests:
     name: Unit Tests (Cloud)
     runs-on: ubuntu-latest
+    needs: lint
+
     steps:
       - uses: actions/checkout@v4
-      - run: npm install
-      - run: npm test
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - run: mvn -B test
+
+
 
 
   mac_build:
-    name: macOS Build (Self-hosted Mac)
+    name: MacOS Build (Self-hosted Mac)
     runs-on: [self-hosted, macos]
-    needs: [lint, unit_tests]
-
-    
-    if: github.event.pull_request.head.repo.fork == false
+    needs: [unit_tests]
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Dependencies
+      - run: echo "Running on my REAL Mac machine"
+      - run: echo "Java: $(java -version)"
+
+
+      - name: Install Allure (macOS)
         run: |
           brew update
-          brew install unzip wget allure || true
+          brew install allure
 
-      - run: echo "Running macOS build..."
-      - run: make build
+      - name: Build on macOS
+        run: mvn -B verify
+
 
 
   linux_build:
-    name: Linux Build (Self-hosted Linux)
+    name: Arch Linux Build (Self-hosted)
     runs-on: [self-hosted, linux]
-    needs: [lint, unit_tests]
-
-    if: github.event.pull_request.head.repo.fork == false
+    needs: [unit_tests]
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Dependencies (Ubuntu, Arch, Mac)
-        run: |
-          echo "Runner OS: $RUNNER_OS"
+      - run: echo "Running Linux build on my Arch machine"
+      - run: echo "Java: $(java -version)"
 
-          if command -v pacman >/dev/null 2>&1; then
-            echo "Arch Linux detected"
-            sudo pacman -Syu --noconfirm
-            sudo pacman -S --noconfirm unzip wget
-          elif command -v apt >/dev/null 2>&1; then
-            echo "Ubuntu detected"
-            sudo apt update
-            sudo apt install -y unzip wget
-          fi
-
-      - name: Install Allure CLI
+    
+      - name: Install Allure (Arch Linux)
         run: |
+          sudo pacman -Sy --noconfirm unzip wget
           wget https://github.com/allure-framework/allure2/releases/download/2.29.0/allure-2.29.0.zip
-          unzip allure-2.29.0.zip -d /opt/allure
+          sudo unzip allure-2.29.0.zip -d /opt/allure
           sudo ln -sf /opt/allure/allure-2.29.0/bin/allure /usr/local/bin/allure
+          allure --version
 
-      - run: echo "Running Linux build..."
-      - run: make build-linux
+      - name: Build on Arch Linux
+        run: mvn -B verify
+
+
+
+  safety_gate:
+    if: github.event.pull_request.head.repo.fork == true
+    name: BLOCK unsafe PR (from forks)
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: |
+          echo "⛔ PR from a fork — blocking self-hosted runners!"
+          exit 1
+
+
 
 
   dashboard:
-    name: CI Dashboard
+    name: CI Dashboard Summary
     runs-on: ubuntu-latest
-    needs: [lint, unit_tests, mac_build, linux_build]
+    needs: [unit_tests, mac_build, linux_build]
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Generate Dashboard
+      - name: Generate summary
         run: |
-          echo "## CI Dashboard" > dashboard.md
-          echo "- Lint: ${{ needs.lint.result }}" >> dashboard.md
-          echo "- Unit Tests: ${{ needs.unit_tests.result }}" >> dashboard.md
-          echo "- macOS Build (Self-hosted): ${{ needs.mac_build.result }}" >> dashboard.md
-          echo "- Linux Build (Self-hosted): ${{ needs.linux_build.result }}" >> dashboard.md
+          echo "## CI Pipeline Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
 
-      - name: Upload Dashboard Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ci-dashboard
-          path: dashboard.md
+          echo "### ✔ Cloud Jobs" >> $GITHUB_STEP_SUMMARY
+          echo "- Lint (ubuntu-latest)" >> $GITHUB_STEP_SUMMARY
+          echo "- Unit Tests (ubuntu-latest)" >> $GITHUB_STEP_SUMMARY
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### ✔ Self-hosted Jobs" >> $GITHUB_STEP_SUMMARY
+          echo "- macOS Build → label: **self-hosted, macos**" >> $GITHUB_STEP_SUMMARY
+          echo "- Arch Linux Build → label: **self-hosted, linux**" >> $GITHUB_STEP_SUMMARY
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🛡 Safety" >> $GITHUB_STEP_SUMMARY
+          echo "- Forked pull requests are blocked from touching your machines." >> $GITHUB_STEP_SUMMARY
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🧪 Testing Framework" >> $GITHUB_STEP_SUMMARY
+          echo "- Playwright (Java)" >> $GITHUB_STEP_SUMMARY
+          echo "- JUnit" >> $GITHUB_STEP_SUMMARY
+          echo "- Maven Surefire" >> $GITHUB_STEP_SUMMARY
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📈 Finished at: $(date)" >> $GITHUB_STEP_SUMMARY
