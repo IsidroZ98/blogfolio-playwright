@@ -31,7 +31,7 @@ public class TestRunner {
         //page = browser.newPage();
         //page = browserContext.newPage();
         
-        apiRequest = playwright.request().newContext(new NewContextOptions().setBaseURL("https://4693ad88a1bd.ngrok-free.app"));
+        apiRequest = playwright.request().newContext(new NewContextOptions().setBaseURL("https://rush-pvc-generate-derived.trycloudflare.com/"));
         
     }
     @BeforeEach

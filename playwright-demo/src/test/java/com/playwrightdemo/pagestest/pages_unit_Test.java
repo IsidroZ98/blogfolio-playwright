@@ -16,11 +16,11 @@ import java.util.Map;
 public class pages_unit_Test extends TestRunner{
     
     
-    private final String homePage = "https://4693ad88a1bd.ngrok-free.app";
-    private final String aboutmePage = "https://4693ad88a1bd.ngrok-free.app/about";
-    private final String projectsPage = "https://4693ad88a1bd.ngrok-free.app/projects";
-    private final String experiencePage = "https://4693ad88a1bd.ngrok-free.app/experience";
-    private final String blogPage = "https://4693ad88a1bd.ngrok-free.app/blog";
+    private final String homePage = "https://rush-pvc-generate-derived.trycloudflare.com/";
+    private final String aboutmePage = "https://rush-pvc-generate-derived.trycloudflare.com/about";
+    private final String projectsPage = "https://rush-pvc-generate-derived.trycloudflare.com/projects";
+    private final String experiencePage = "https://rush-pvc-generate-derived.trycloudflare.com/experience";
+    private final String blogPage = "https://rush-pvc-generate-derived.trycloudflare.com/blog";
     // Write the tests for these pages
 
     /*

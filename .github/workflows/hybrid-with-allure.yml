@@ -1,0 +1,207 @@
+name: Hybrid CI/CD with Allure Reporting
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "allure-deploy"
+  cancel-in-progress: false
+
+jobs:
+
+  # ---------------------------------------------
+  # 1. CLOUD MAVEN CHECKS
+  # ---------------------------------------------
+  maven_checks:
+    name: Maven Check & Unit Tests (Cloud)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Run Maven Tests
+        run: |
+          cd playwright-demo
+          mvn -B test
+
+      - name: Upload allure results (Cloud)
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-cloud
+          path: playwright-demo/allure-results/
+
+
+  # ---------------------------------------------
+  # 2. MAC SELF-HOSTED JOB
+  # ---------------------------------------------
+  mac_build:
+    name: MacOS Build (Self-hosted Mac)
+    runs-on: [self-hosted, macos]
+    needs: maven_checks
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Info
+        run: |
+          echo "MacOS runner active"
+          java -version
+
+      - name: Install Allure CLI (macOS)
+        run: |
+          brew update
+          brew install allure
+
+      - name: Build + Tests
+        run: |
+          cd playwright-demo
+          mvn -B verify
+
+      - name: Upload allure results (macOS)
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-macos
+          path: playwright-demo/allure-results/
+
+
+  # ---------------------------------------------
+  # 3. ARCH LINUX SELF-HOSTED JOB
+  # ---------------------------------------------
+  linux_build:
+    name: Arch Linux Build (Self-hosted Linux)
+    runs-on: [self-hosted, linux]
+    needs: maven_checks
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Info
+        run: |
+          echo "Arch runner active"
+          java -version
+
+      - name: Install Allure CLI (Arch Linux)
+        run: |
+          sudo pacman -Sy --noconfirm unzip wget
+          wget https://github.com/allure-framework/allure2/releases/download/2.29.0/allure-2.29.0.zip
+          sudo unzip -o allure-2.29.0.zip -d /opt/allure
+          sudo ln -sf /opt/allure/allure-2.29.0/bin/allure /usr/local/bin/allure
+
+      - name: Build + Tests
+        run: |
+          cd playwright-demo
+          mvn -B verify
+
+      - name: Upload allure results (Arch)
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-arch
+          path: playwright-demo/allure-results/
+
+
+  # ---------------------------------------------
+  # 4. SAFETY GATE — block forks
+  # ---------------------------------------------
+  safety_gate:
+    if: github.event.pull_request.head.repo.fork == true
+    name: BLOCK unsafe PR (from forks)
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: |
+          echo "⛔ PR from fork — blocked from self-hosted runners!"
+          exit 1
+
+
+  # ---------------------------------------------
+  # 5. MERGE ALLURE RESULTS + GENERATE REPORT
+  # ---------------------------------------------
+  merge_and_generate:
+    name: Merge Allure Results + Generate Report
+    runs-on: ubuntu-latest
+    needs: [mac_build, linux_build, maven_checks]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Allure CLI
+        run: |
+          sudo apt update
+          sudo apt install -y unzip
+          wget https://github.com/allure-framework/allure2/releases/download/2.29.0/allure-2.29.0.zip
+          unzip allure-2.29.0.zip -d /opt/allure
+          sudo ln -s /opt/allure/allure-2.29.0/bin/allure /usr/local/bin/allure
+
+      - name: Download ALL allure results
+        uses: actions/download-artifact@v4
+        with:
+          path: merged-allure
+          merge-multiple: true
+
+      - name: Merge and generate report
+        run: |
+          mkdir -p merged-allure-results
+          cp -r merged-allure/* merged-allure-results/
+          allure generate merged-allure-results --clean -o allure-report
+
+      - name: Upload report to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: allure-report
+
+
+  # ---------------------------------------------
+  # 6. DEPLOY TO GITHUB PAGES
+  # ---------------------------------------------
+  deploy:
+    name: Deploy Allure Report to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: merge_and_generate
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+
+  # ---------------------------------------------
+  # 7. DASHBOARD SUMMARY
+  # ---------------------------------------------
+  dashboard:
+    name: CI Dashboard Summary
+    runs-on: ubuntu-latest
+    needs: [maven_checks, mac_build, linux_build, merge_and_generate]
+
+    steps:
+      - name: Summary
+        run: |
+          echo "## CI Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- Cloud Tests: OK" >> $GITHUB_STEP_SUMMARY
+          echo "- macOS Self-hosted: OK" >> $GITHUB_STEP_SUMMARY
+          echo "- Arch Self-hosted: OK" >> $GITHUB_STEP_SUMMARY
+          echo "- Allure Report Generated" >> $GITHUB_STEP_SUMMARY
