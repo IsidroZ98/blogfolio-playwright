@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class api_get_Test extends TestRunner{
     
     // Ngrok Fall Back: String homePage = "https://4693ad88a1bd.ngrok-free.app";
-    String homePage = "https://rush-pvc-generate-derived.trycloudflare.com/";
+    String homePage = "https://rush-pvc-generate-derived.trycloudflare.com";
     @Test
     @DisplayName("API => GET, 404 error route ")
     @AllureId("Test-Case-1")
