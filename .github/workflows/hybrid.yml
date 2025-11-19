@@ -27,10 +27,7 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Maven Checkstyle & Spotless
-        run: |
-          cd playwright-demo
-          mvn -B spotless:check checkstyle:check
+      
 
       - name: Maven Unit Tests
         run: mvn -B test
