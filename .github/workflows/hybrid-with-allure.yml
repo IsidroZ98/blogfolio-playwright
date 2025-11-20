@@ -140,7 +140,7 @@ jobs:
       needs.maven_checks.result == 'success' &&
       (
         needs.mac_build.result == 'success' ||
-        needs.linux_build.result = 'success'
+        needs.linux_build.result == 'success'
       )
 
     steps:
