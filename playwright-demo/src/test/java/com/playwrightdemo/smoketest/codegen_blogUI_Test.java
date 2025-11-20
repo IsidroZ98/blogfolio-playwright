@@ -13,7 +13,7 @@ import io.qameta.allure.Description;
 
 public class codegen_blogUI_Test extends TestRunner{
     
-    static String homePage = "https://rush-pvc-generate-derived.trycloudflare.com/";
+    
     // Smoke test local and +1 ping to ngrok limiter
     @Test
     @DisplayName("Codegen generated test with fall back to home page smoke test")
@@ -30,11 +30,11 @@ public class codegen_blogUI_Test extends TestRunner{
         page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("blog Blog Digital notebook of")).click();
         page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("[Home]")).click();
         page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("ascii image of resume Resume")).click();
-        page.navigate("https://rush-pvc-generate-derived.trycloudflare.com/");
+        page.navigate(homePage);
         page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Linkedin")).click();
-        page.navigate("https://rush-pvc-generate-derived.trycloudflare.com/");
+        page.navigate(homePage);
         page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Github")).click();
-        page.navigate("https://rush-pvc-generate-derived.trycloudflare.com/");
+        page.navigate(homePage);
         page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Change Log")).click();
         // Visit Site from accepting link from Ngrok ping +1 rate limit
         //page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Visit Site")).click();

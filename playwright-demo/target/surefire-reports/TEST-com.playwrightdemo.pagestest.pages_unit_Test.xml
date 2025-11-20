@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.playwrightdemo.pagestest.pages_unit_Test" time="50.509" tests="15" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.playwrightdemo.pagestest.pages_unit_Test" time="56.485" tests="15" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="24"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/24.0.2/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/izzyz/blogfolio-playwright/playwright-demo/target/surefire/surefirebooter-20251119175545646_3.jar /Users/izzyz/blogfolio-playwright/playwright-demo/target/surefire 2025-11-19T17-55-45_546-jvmRun1 surefire-20251119175545646_1tmp surefire_0-20251119175545646_2tmp"/>
+    <property name="sun.java.command" value="/Users/izzyz/blogfolio-playwright/playwright-demo/target/surefire/surefirebooter-20251120103729739_3.jar /Users/izzyz/blogfolio-playwright/playwright-demo/target/surefire 2025-11-20T10-37-29_698-jvmRun1 surefire-20251120103729739_1tmp surefire_0-20251120103729739_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/izzyz/blogfolio-playwright/playwright-demo/target/test-classes:/Users/izzyz/blogfolio-playwright/playwright-demo/target/classes:/Users/izzyz/.m2/repository/com/microsoft/playwright/playwright/1.56.0/playwright-1.56.0.jar:/Users/izzyz/.m2/repository/com/google/code/gson/gson/2.13.2/gson-2.13.2.jar:/Users/izzyz/.m2/repository/com/google/errorprone/error_prone_annotations/2.41.0/error_prone_annotations-2.41.0.jar:/Users/izzyz/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/izzyz/.m2/repository/com/microsoft/playwright/driver-bundle/1.56.0/driver-bundle-1.56.0.jar:/Users/izzyz/.m2/repository/com/microsoft/playwright/driver/1.56.0/driver-1.56.0.jar:/Users/izzyz/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.1/junit-jupiter-engine-5.10.1.jar:/Users/izzyz/.m2/repository/org/junit/platform/junit-platform-engine/1.10.1/junit-platform-engine-1.10.1.jar:/Users/izzyz/.m2/repository/org/junit/platform/junit-platform-commons/1.10.1/junit-platform-commons-1.10.1.jar:/Users/izzyz/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.1/junit-jupiter-api-5.10.1.jar:/Users/izzyz/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/izzyz/.m2/repository/io/qameta/allure/allure-junit5/2.25.0/allure-junit5-2.25.0.jar:/Users/izzyz/.m2/repository/io/qameta/allure/allure-junit-platform/2.25.0/allure-junit-platform-2.25.0.jar:/Users/izzyz/.m2/repository/io/qameta/allure/allure-java-commons/2.25.0/allure-java-commons-2.25.0.jar:/Users/izzyz/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Users/izzyz/.m2/repository/io/qameta/allure/allure-model/2.25.0/allure-model-2.25.0.jar:/Users/izzyz/.m2/repository/io/qameta/allure/allure-test-filter/2.25.0/allure-test-filter-2.25.0.jar:/Users/izzyz/.m2/repository/org/junit/platform/junit-platform-launcher/1.9.2/junit-platform-launcher-1.9.2.jar:/Users/izzyz/.m2/repository/io/github/uchagani/allure-playwright-java/1.1.0/allure-playwright-java-1.1.0.jar:"/>
@@ -30,7 +30,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/izzyz/blogfolio-playwright/playwright-demo/target/surefire/surefirebooter-20251119175545646_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/izzyz/blogfolio-playwright/playwright-demo/target/surefire/surefirebooter-20251120103729739_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="24.0.2"/>
@@ -59,24 +59,24 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="68.0"/>
   </properties>
-  <testcase name="blog_pageTitleTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.862">
+  <testcase name="blog_pageTitleTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="3.029">
     <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 ]]></system-err>
   </testcase>
-  <testcase name="project_PortfolioCardTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.523"/>
-  <testcase name="project_playwrightBlogfolioCardTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.437"/>
-  <testcase name="homePage_test" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.775"/>
-  <testcase name="homePage_changeLogTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.656"/>
-  <testcase name="experience_pageTitleTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.321"/>
-  <testcase name="project_amazonSelCardTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.619"/>
-  <testcase name="project_snapinstaToolCardTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="4.353"/>
-  <testcase name="project_titleTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.463"/>
-  <testcase name="aboutMePage_whoamiTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="4.744"/>
-  <testcase name="project_rtlCardTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.468"/>
-  <testcase name="aboutMePage_titleTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.844"/>
-  <testcase name="project_planetCardTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="4.346"/>
-  <testcase name="aboutMePage_miscTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="4.021"/>
-  <testcase name="aboutMePage_journeyTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="5.441"/>
+  <testcase name="project_PortfolioCardTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.843"/>
+  <testcase name="project_playwrightBlogfolioCardTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="4.432"/>
+  <testcase name="homePage_test" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="6.635"/>
+  <testcase name="homePage_changeLogTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="3.462"/>
+  <testcase name="experience_pageTitleTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.442"/>
+  <testcase name="project_amazonSelCardTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="3.69"/>
+  <testcase name="project_snapinstaToolCardTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="4.078"/>
+  <testcase name="project_titleTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="7.195"/>
+  <testcase name="aboutMePage_whoamiTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="3.493"/>
+  <testcase name="project_rtlCardTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.59"/>
+  <testcase name="aboutMePage_titleTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.73"/>
+  <testcase name="project_planetCardTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.453"/>
+  <testcase name="aboutMePage_miscTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.735"/>
+  <testcase name="aboutMePage_journeyTest" classname="com.playwrightdemo.pagestest.pages_unit_Test" time="2.67"/>
 </testsuite>

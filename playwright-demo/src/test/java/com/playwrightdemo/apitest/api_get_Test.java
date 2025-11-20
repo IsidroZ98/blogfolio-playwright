@@ -4,19 +4,17 @@ import com.playwrightdemo.TestRunner;
 
 import io.qameta.allure.AllureId;
 import io.qameta.allure.Description;
-import io.qameta.allure.*;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import com.microsoft.playwright.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 public class api_get_Test extends TestRunner{
     
     // Ngrok Fall Back: String homePage = "https://4693ad88a1bd.ngrok-free.app";
-    String homePage = "https://rush-pvc-generate-derived.trycloudflare.com";
     @Test
     @DisplayName("API => GET, 404 error route ")
     @AllureId("Test-Case-1")

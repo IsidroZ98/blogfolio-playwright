@@ -15,7 +15,7 @@ public class TestRunner {
     protected Page page;
     protected static APIRequestContext apiRequest;
     protected BrowserContext browserContext;
-
+    protected static String homePage = "https://blend-forests-forth-socks.trycloudflare.com";
 
     @BeforeAll
     static void setupBeforeClass(){
@@ -31,7 +31,7 @@ public class TestRunner {
         //page = browser.newPage();
         //page = browserContext.newPage();
         
-        apiRequest = playwright.request().newContext(new NewContextOptions().setBaseURL("https://rush-pvc-generate-derived.trycloudflare.com/"));
+        apiRequest = playwright.request().newContext(new NewContextOptions().setBaseURL(homePage));
         
     }
     @BeforeEach
