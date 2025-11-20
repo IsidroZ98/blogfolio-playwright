@@ -23,3 +23,4 @@
     - [x] Issue #2 allure report in testing is not 100% and fails due to some unexpected issue
 ### 11/18/25
     - [] Tests performance improvements
+    - [] shift tunneling service
