@@ -9,7 +9,7 @@ on:
       run_mac:
         type: boolean
         required: true
-        default: true
+        default: false
         description: "Flag to run macOS self-hosted test"
       run_archlinux:
         type: boolean
