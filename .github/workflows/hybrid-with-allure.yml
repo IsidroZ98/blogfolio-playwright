@@ -80,7 +80,7 @@ jobs:
   # ---------------------------------------------
   linux_build:
     name: Arch Linux Build (Self-hosted Linux)
-    runs-on: [self-hosted, linux]
+    runs-on: [self-hosted, archlinux]
     needs: maven_checks
 
     steps:
@@ -111,7 +111,7 @@ jobs:
 
   kubuntu_linux_build:
     name: Kubuntu Linux Build (Self-hosted Linux)
-    runs-on: [self-hosted, linux]
+    runs-on: [self-hosted, kubuntu]
     needs: maven_checks
 
     steps:
