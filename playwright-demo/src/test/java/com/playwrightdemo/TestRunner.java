@@ -15,7 +15,7 @@ public class TestRunner {
     protected Page page;
     protected static APIRequestContext apiRequest;
     protected BrowserContext browserContext;
-    protected static String homePage = "https://collar-seat-nsw-compressed.trycloudflare.com";
+    protected static String homePage = "https://blogfolio.isidro-zapata.dev";
 
     @BeforeAll
     static void setupBeforeClass(){
