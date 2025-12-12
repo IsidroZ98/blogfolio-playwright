@@ -1,0 +1,28 @@
+{
+    "ci":{
+        "collect":{
+            
+            "url":[
+                "https://blogfolio.isidro-zapata.dev/",
+                "https://blogfolio.isidro-zapata.dev/about",
+                "https://blogfolio.isidro-zapata.dev/projects",
+                "https://blogfolio.isidro-zapata.dev/experience",
+                "https://blogfolio.isidro-zapata.dev/blog"
+            ],
+            "numberofRuns": 3,
+            "settings":{
+                "preset": "desktop"
+            }
+        },
+        "upload":{
+            "target": "filesystem",
+            "outputDir": "./lhci-reports"
+        },
+        "assert":{
+            "preset": "lighthouse:recommended",
+            "assertions":{
+                "accesskeys": "off"
+            }
+        }
+    }
+}

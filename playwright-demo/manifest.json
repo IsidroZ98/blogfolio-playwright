@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://blogfolio.isidro-zapata.dev/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/izzy/blogfolio-playwright/playwright-demo/blogfolio_isidro_zapata_dev--2025_12_12_21_25_18.report.html",
+    "jsonPath": "/home/izzy/blogfolio-playwright/playwright-demo/blogfolio_isidro_zapata_dev--2025_12_12_21_25_18.report.json",
+    "summary": {
+      "performance": 0.82,
+      "accessibility": 0.71,
+      "best-practices": 0.89,
+      "seo": 0.5
+    }
+  },
+  {
+    "url": "https://blogfolio.isidro-zapata.dev/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/izzy/blogfolio-playwright/playwright-demo/blogfolio_isidro_zapata_dev--2025_12_12_21_25_42.report.html",
+    "jsonPath": "/home/izzy/blogfolio-playwright/playwright-demo/blogfolio_isidro_zapata_dev--2025_12_12_21_25_42.report.json",
+    "summary": {
+      "performance": 0.82,
+      "accessibility": 0.71,
+      "best-practices": 0.89,
+      "seo": 0.5
+    }
+  },
+  {
+    "url": "https://blogfolio.isidro-zapata.dev/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/izzy/blogfolio-playwright/playwright-demo/blogfolio_isidro_zapata_dev--2025_12_12_21_25_30.report.html",
+    "jsonPath": "/home/izzy/blogfolio-playwright/playwright-demo/blogfolio_isidro_zapata_dev--2025_12_12_21_25_30.report.json",
+    "summary": {
+      "performance": 0.82,
+      "accessibility": 0.71,
+      "best-practices": 0.89,
+      "seo": 0.5
+    }
+  }
+]

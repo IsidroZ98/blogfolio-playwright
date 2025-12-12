@@ -6,6 +6,9 @@ playwright-demo/allure-results/
 playwright-demo/.allure/
 playwright-demo/target/site/allure-maven-plugin/
 
+# lighthouse
+playwright-demo/node_modules/
+/.lighthouseci/
 # IDE Files
 /.vscode/
 /*.iml/

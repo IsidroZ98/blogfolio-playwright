@@ -152,6 +152,7 @@ jobs:
       - run: |
           echo "⛔ PR from fork — blocked from self-hosted runners!"
           exit 1
+          
   # ---------------------------------------------
   # 5. MERGE ALLURE RESULTS + GENERATE REPORT
   # ---------------------------------------------
