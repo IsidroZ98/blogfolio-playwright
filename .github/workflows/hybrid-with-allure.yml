@@ -57,10 +57,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Info
+      - name: Info and setup Java fix
         run: |
           echo "MacOS runner active"
           java -version
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
       - name: Install Allure CLI (macOS)
         run: |
           brew update
@@ -125,6 +130,7 @@ jobs:
         run: |
           sudo apt update -y
           sudo apt install -y unzip wget
+          sudo rm -rf /tmp/allure /opt/allure
           wget https://github.com/allure-framework/allure2/releases/download/2.29.0/allure-2.29.0.zip
           unzip allure-2.29.0.zip -d /tmp/allure
           sudo mv /tmp/allure/allure-2.29.0 /opt/allure
@@ -152,7 +158,7 @@ jobs:
       - run: |
           echo "⛔ PR from fork — blocked from self-hosted runners!"
           exit 1
-          
+
   # ---------------------------------------------
   # 5. MERGE ALLURE RESULTS + GENERATE REPORT
   # ---------------------------------------------
