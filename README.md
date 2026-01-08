@@ -27,5 +27,10 @@
     - [x] shift tunneling service
         - Cloudflare tunneling
 ### 11/20/25 refactor
-    - [] performance testing
-    - [] baseline 
+    - [x] performance testing
+    - [x] baseline 
+### 12/16/25 refactor in process
+    - [] improve accessiblity
+    - [] migrat back end media fiels being served 
+    - [] rerun test and compile changes on App.java file 
+        - compare before and after
