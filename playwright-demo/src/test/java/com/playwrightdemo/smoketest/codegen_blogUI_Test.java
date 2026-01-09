@@ -21,22 +21,23 @@ public class codegen_blogUI_Test extends TestRunner{
     @Description("Assert all pages all present ")
     void codegen_landingPageLinks() throws InterruptedException{
         page.navigate(homePage);
-        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("About Me About Me Whoami,")).click();
+        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Ascii image of a blue folder")).click();
         page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("[Home]")).click();
-        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Projects Projects Linux,")).click();
+        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Ascii image of a beige folder")).click();
         page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("[Home]")).click();
-        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Experience Experience Resume")).click();
+        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Ascii image of a blue text")).click();
         page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("[Home]")).click();
-        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("blog Blog Digital notebook of")).click();
+        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Ascii image of a shell file")).click();
         page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("[Home]")).click();
-        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("ascii image of resume Resume")).click();
+        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Ascii image of my resume")).click();
         page.navigate(homePage);
-        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Linkedin")).click();
+        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Ascii image of Linkedin logo")).click();
         page.navigate(homePage);
-        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Github")).click();
+        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Ascii image of Github logo")).click();
         page.navigate(homePage);
         page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Change Log")).click();
         // Visit Site from accepting link from Ngrok ping +1 rate limit
         //page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Visit Site")).click();
     }
 }
+

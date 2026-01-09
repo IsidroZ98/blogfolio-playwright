@@ -1,14 +1,435 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>App.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">playwright-demo</a> &gt; <a href="index.source.html" class="el_package">com.playwrightdemo</a> &gt; <span class="el_source">App.java</span></div><h1>App.java</h1><pre class="source lang-java linenums">package com.playwrightdemo;
+import java.util.ArrayList;
 
 /**
  * Hello world!
  *
  */
-<span class="nc" id="L7">public class App </span>
+<span class="nc" id="L8">public class App </span>
 {
     public static void main( String[] args )
     {
-<span class="nc" id="L11">        System.out.println( &quot;Hello World!&quot; );</span>
-<span class="nc" id="L12">    }</span>
+<span class="nc" id="L12">        System.out.println( &quot;==================== Before the great back end migration ====================&quot; );</span>
+
+<span class="nc" id="L14">        ArrayList&lt;String&gt; blogfolioRoutes = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L15">        blogfolioRoutes.add(&quot;Home Page: &quot;);</span>
+<span class="nc" id="L16">        blogfolioRoutes.add(&quot;About Me Page: &quot;);</span>
+<span class="nc" id="L17">        blogfolioRoutes.add(&quot;Projects Page: &quot;);</span>
+<span class="nc" id="L18">        blogfolioRoutes.add(&quot;Experience Page: &quot;);</span>
+<span class="nc" id="L19">        blogfolioRoutes.add(&quot;Blog Page: &quot;);</span>
+        
+
+<span class="nc" id="L22">        ArrayList&lt;String&gt; lighthouseCats = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L23">        lighthouseCats.add(&quot;Performance Overall: &quot;); // 0</span>
+<span class="nc" id="L24">        lighthouseCats.add(&quot;Performance - Largest Contentful Paint: &quot;); // 1</span>
+<span class="nc" id="L25">        lighthouseCats.add(&quot;Performance - Speed Index: &quot;); // 2</span>
+<span class="nc" id="L26">        lighthouseCats.add(&quot;Accessibility: &quot;); // 3</span>
+<span class="nc" id="L27">        lighthouseCats.add(&quot;Best Practices: &quot;); // 4</span>
+<span class="nc" id="L28">        lighthouseCats.add(&quot;Search Engine Optimization: &quot;);  // 5</span>
+        
+        double catScoreOne, catScoreTwo, catScoreThree, catScoreAvg;
+<span class="nc" id="L31">        System.out.println(&quot;=====================================================================&quot;);</span>
+        
+<span class="nc" id="L33">        System.out.println(&quot;||     &quot; + blogfolioRoutes.get(0)+ &quot;                                                 ||&quot;);</span>
+<span class="nc" id="L34">        catScoreOne = 80;</span>
+<span class="nc" id="L35">        catScoreTwo = 82;</span>
+<span class="nc" id="L36">        catScoreThree = 82;</span>
+<span class="nc" id="L37">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L38">        System.out.println(&quot;||     &quot; + lighthouseCats.get(0)+&quot; &quot;+ Math.round(catScoreAvg*10.0/10.0)+ &quot;                                    ||&quot;);</span>
+<span class="nc" id="L39">        catScoreOne = 3.1;</span>
+<span class="nc" id="L40">        catScoreTwo = 3.1;</span>
+<span class="nc" id="L41">        catScoreThree = 3.1;</span>
+<span class="nc" id="L42">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L43">        System.out.println(&quot;||     &quot; + lighthouseCats.get(1)+&quot; &quot;+ catScoreAvg+&quot; second(s)&quot;</span>
+        + &quot;      ||&quot;);
+<span class="nc" id="L45">        catScoreOne = 1.4;</span>
+<span class="nc" id="L46">        catScoreTwo = 0.7;</span>
+<span class="nc" id="L47">        catScoreThree = 0.7;</span>
+<span class="nc" id="L48">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L49">        System.out.println(&quot;||     &quot; + lighthouseCats.get(2)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 + &quot; second(s)&quot;</span>
+        + &quot;                   ||&quot;);
+<span class="nc" id="L51">        catScoreOne = 71;</span>
+<span class="nc" id="L52">        catScoreTwo = 71;</span>
+<span class="nc" id="L53">        catScoreThree = 71;</span>
+<span class="nc" id="L54">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L55">        System.out.println(&quot;||     &quot; + lighthouseCats.get(3)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                        ||&quot;);
+<span class="nc" id="L57">        catScoreOne = 89;</span>
+<span class="nc" id="L58">        catScoreTwo = 89;</span>
+<span class="nc" id="L59">        catScoreThree = 89;</span>
+<span class="nc" id="L60">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L61">        System.out.println(&quot;||     &quot; + lighthouseCats.get(4)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                       ||&quot;);
+<span class="nc" id="L63">        catScoreOne = 50;</span>
+<span class="nc" id="L64">        catScoreTwo = 50;</span>
+<span class="nc" id="L65">        catScoreThree = 50;</span>
+<span class="nc" id="L66">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L67">        System.out.println(&quot;||     &quot; + lighthouseCats.get(5)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0</span>
+        + &quot;                           ||&quot;);
+        
+<span class="nc" id="L70">        System.out.println(&quot;=====================================================================&quot;);</span>
+        
+<span class="nc" id="L72">        System.out.println(&quot;||     &quot; + blogfolioRoutes.get(1)+ &quot;                                             ||&quot;);</span>
+<span class="nc" id="L73">        catScoreOne = 84;</span>
+<span class="nc" id="L74">        catScoreTwo = 80;</span>
+<span class="nc" id="L75">        catScoreThree = 80;</span>
+<span class="nc" id="L76">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L77">        System.out.println(&quot;||     &quot; + lighthouseCats.get(0)+&quot; &quot;+ Math.round(catScoreAvg*10.0/10.0)+ &quot; second(s)                          ||&quot;);</span>
+<span class="nc" id="L78">        catScoreOne = 2.9;</span>
+<span class="nc" id="L79">        catScoreTwo = 2.9;</span>
+<span class="nc" id="L80">        catScoreThree = 2.9;</span>
+<span class="nc" id="L81">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L82">        System.out.println(&quot;||     &quot; + lighthouseCats.get(1)+&quot; &quot;+ catScoreAvg+&quot; seconds&quot;</span>
+        + &quot;        ||&quot;);
+<span class="nc" id="L84">        catScoreOne = 0.8;</span>
+<span class="nc" id="L85">        catScoreTwo = 0.7;</span>
+<span class="nc" id="L86">        catScoreThree = 0.8;</span>
+<span class="nc" id="L87">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L88">        System.out.println(&quot;||     &quot; + lighthouseCats.get(2)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                             ||&quot;);
+<span class="nc" id="L90">        catScoreOne = 90;</span>
+<span class="nc" id="L91">        catScoreTwo = 90;</span>
+<span class="nc" id="L92">        catScoreThree = 90;</span>
+<span class="nc" id="L93">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L94">        System.out.println(&quot;||     &quot; + lighthouseCats.get(3)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                        ||&quot;);
+<span class="nc" id="L96">        catScoreOne = 93;</span>
+<span class="nc" id="L97">        catScoreTwo = 93;</span>
+<span class="nc" id="L98">        catScoreThree = 93;</span>
+<span class="nc" id="L99">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L100">        System.out.println(&quot;||     &quot; + lighthouseCats.get(4)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                       ||&quot;);
+<span class="nc" id="L102">        catScoreOne = 54;</span>
+<span class="nc" id="L103">        catScoreTwo = 54;</span>
+<span class="nc" id="L104">        catScoreThree = 54;</span>
+<span class="nc" id="L105">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L106">        System.out.println(&quot;||     &quot; + lighthouseCats.get(5)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                           ||&quot;);
+        
+<span class="nc" id="L109">        System.out.println(&quot;=====================================================================&quot;);</span>
+        
+<span class="nc" id="L111">        System.out.println(&quot;||     &quot; + blogfolioRoutes.get(2)+ &quot;                                             ||&quot;);</span>
+<span class="nc" id="L112">        catScoreOne = 84;</span>
+<span class="nc" id="L113">        catScoreTwo = 80;</span>
+<span class="nc" id="L114">        catScoreThree = 80;</span>
+<span class="nc" id="L115">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L116">        System.out.println(&quot;||     &quot; + lighthouseCats.get(0)+&quot; &quot;+ Math.round(catScoreAvg*10.0/10.0)+ &quot;                                    ||&quot;);</span>
+<span class="nc" id="L117">        catScoreOne = 2.9;</span>
+<span class="nc" id="L118">        catScoreTwo = 2.9;</span>
+<span class="nc" id="L119">        catScoreThree = 2.9;</span>
+<span class="nc" id="L120">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L121">        System.out.println(&quot;||     &quot; + lighthouseCats.get(1)+&quot; &quot;+ catScoreAvg+&quot; second(s)&quot;</span>
+        + &quot;      ||&quot;);
+<span class="nc" id="L123">        catScoreOne = 0.8;</span>
+<span class="nc" id="L124">        catScoreTwo = 0.7;</span>
+<span class="nc" id="L125">        catScoreThree = 0.8;</span>
+<span class="nc" id="L126">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L127">        System.out.println(&quot;||     &quot; + lighthouseCats.get(2)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 + &quot; second(s)&quot;</span>
+        + &quot;                   ||&quot;);
+<span class="nc" id="L129">        catScoreOne = 90;</span>
+<span class="nc" id="L130">        catScoreTwo = 90;</span>
+<span class="nc" id="L131">        catScoreThree = 90;</span>
+<span class="nc" id="L132">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L133">        System.out.println(&quot;||     &quot; + lighthouseCats.get(3)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                        ||&quot;);
+<span class="nc" id="L135">        catScoreOne = 93;</span>
+<span class="nc" id="L136">        catScoreTwo = 93;</span>
+<span class="nc" id="L137">        catScoreThree = 93;</span>
+<span class="nc" id="L138">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L139">        System.out.println(&quot;||     &quot; + lighthouseCats.get(4)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                       ||&quot;);
+<span class="nc" id="L141">        catScoreOne = 54;</span>
+<span class="nc" id="L142">        catScoreTwo = 54;</span>
+<span class="nc" id="L143">        catScoreThree = 54;</span>
+<span class="nc" id="L144">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L145">        System.out.println(&quot;||     &quot; + lighthouseCats.get(5)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                           ||&quot;);
+        
+
+<span class="nc" id="L149">        System.out.println(&quot;=====================================================================&quot;);</span>
+        
+<span class="nc" id="L151">        System.out.println(&quot;||     &quot; + blogfolioRoutes.get(3)+ &quot;                                           ||&quot;);</span>
+<span class="nc" id="L152">        catScoreOne = 82;</span>
+<span class="nc" id="L153">        catScoreTwo = 81;</span>
+<span class="nc" id="L154">        catScoreThree = 82;</span>
+<span class="nc" id="L155">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L156">        System.out.println(&quot;||     &quot; + lighthouseCats.get(0)+&quot; &quot;+ Math.round(catScoreAvg*10.0/10.0)+ &quot;                                    ||&quot;);</span>
+<span class="nc" id="L157">        catScoreOne = 2.3;</span>
+<span class="nc" id="L158">        catScoreTwo = 2.4;</span>
+<span class="nc" id="L159">        catScoreThree = 2.3;</span>
+<span class="nc" id="L160">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L161">        System.out.println(&quot;||     &quot; + lighthouseCats.get(1)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/10.0 +&quot; second(s)&quot;</span>
+        + &quot;      ||&quot;);
+<span class="nc" id="L163">        catScoreOne = 0.9;</span>
+<span class="nc" id="L164">        catScoreTwo = 0.9;</span>
+<span class="nc" id="L165">        catScoreThree = 0.9;</span>
+<span class="nc" id="L166">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L167">        System.out.println(&quot;||     &quot; + lighthouseCats.get(2)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 + &quot; second(s)&quot;</span>
+        + &quot;                   ||&quot;);
+<span class="nc" id="L169">        catScoreOne = 77;</span>
+<span class="nc" id="L170">        catScoreTwo = 77;</span>
+<span class="nc" id="L171">        catScoreThree = 77;</span>
+<span class="nc" id="L172">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L173">        System.out.println(&quot;||     &quot; + lighthouseCats.get(3)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                        ||&quot;);
+<span class="nc" id="L175">        catScoreOne = 93;</span>
+<span class="nc" id="L176">        catScoreTwo = 93;</span>
+<span class="nc" id="L177">        catScoreThree = 93;</span>
+<span class="nc" id="L178">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L179">        System.out.println(&quot;||     &quot; + lighthouseCats.get(4)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                       ||&quot;);
+<span class="nc" id="L181">        catScoreOne = 54;</span>
+<span class="nc" id="L182">        catScoreTwo = 54;</span>
+<span class="nc" id="L183">        catScoreThree = 54;</span>
+<span class="nc" id="L184">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L185">        System.out.println(&quot;||     &quot; + lighthouseCats.get(5)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                           ||&quot;);
+
+<span class="nc" id="L188">        System.out.println(&quot;=====================================================================&quot;);</span>
+        
+<span class="nc" id="L190">        System.out.println(&quot;||     &quot; + blogfolioRoutes.get(4)+ &quot;                                                 ||&quot;); //blog</span>
+<span class="nc" id="L191">        catScoreOne = 82;</span>
+<span class="nc" id="L192">        catScoreTwo = 81;</span>
+<span class="nc" id="L193">        catScoreThree = 82;</span>
+<span class="nc" id="L194">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L195">        System.out.println(&quot;||     &quot; + lighthouseCats.get(0)+&quot; &quot;+ Math.round(catScoreAvg*10.0/10.0)+ &quot;                                    ||&quot;);</span>
+<span class="nc" id="L196">        catScoreOne = 3.3;</span>
+<span class="nc" id="L197">        catScoreTwo = 3.4;</span>
+<span class="nc" id="L198">        catScoreThree = 3.3;</span>
+<span class="nc" id="L199">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L200">        System.out.println(&quot;||     &quot; + lighthouseCats.get(1)+&quot; &quot;+Math.round(catScoreAvg)*10.0/10.0 +&quot; second(s)&quot;</span>
+        + &quot;      ||&quot;);
+<span class="nc" id="L202">        catScoreOne = 0.8;</span>
+<span class="nc" id="L203">        catScoreTwo = 0.8;</span>
+<span class="nc" id="L204">        catScoreThree = 0.8;</span>
+<span class="nc" id="L205">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L206">        System.out.println(&quot;||     &quot; + lighthouseCats.get(2)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 + &quot; second(s)&quot;</span>
+        + &quot;                   ||&quot;);
+<span class="nc" id="L208">        catScoreOne =90;</span>
+<span class="nc" id="L209">        catScoreTwo = 90;</span>
+<span class="nc" id="L210">        catScoreThree = 77;</span>
+<span class="nc" id="L211">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L212">        System.out.println(&quot;||     &quot; + lighthouseCats.get(3)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                        ||&quot;);
+<span class="nc" id="L214">        catScoreOne = 93;</span>
+<span class="nc" id="L215">        catScoreTwo = 93;</span>
+<span class="nc" id="L216">        catScoreThree = 93;</span>
+<span class="nc" id="L217">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L218">        System.out.println(&quot;||     &quot; + lighthouseCats.get(4)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                       ||&quot;);
+<span class="nc" id="L220">        catScoreOne = 54;</span>
+<span class="nc" id="L221">        catScoreTwo = 54;</span>
+<span class="nc" id="L222">        catScoreThree = 54;</span>
+<span class="nc" id="L223">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L224">        System.out.println(&quot;||     &quot; + lighthouseCats.get(5)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                           ||&quot;);
+<span class="nc" id="L226">        System.out.println(&quot;=====================================================================&quot;);</span>
+
+    
+    
+    
+<span class="nc" id="L231">        System.out.println( &quot;==================== After the great back end migration ====================&quot; );</span>
+
+        
+        
+<span class="nc" id="L235">        System.out.println(&quot;=====================================================================&quot;);</span>
+        //Home
+<span class="nc" id="L237">        System.out.println(&quot;||     &quot; + blogfolioRoutes.get(0)+ &quot;                                                 ||&quot;);</span>
+<span class="nc" id="L238">        catScoreOne = 98;</span>
+<span class="nc" id="L239">        catScoreTwo = 97;</span>
+<span class="nc" id="L240">        catScoreThree = 98;</span>
+<span class="nc" id="L241">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L242">        System.out.println(&quot;||     &quot; + lighthouseCats.get(0)+&quot; &quot;+ Math.round(catScoreAvg*10.0/10.0)+ &quot;                                    ||&quot;);</span>
+<span class="nc" id="L243">        catScoreOne = 0.7;</span>
+<span class="nc" id="L244">        catScoreTwo = 0.8;</span>
+<span class="nc" id="L245">        catScoreThree = 0.8;</span>
+<span class="nc" id="L246">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L247">        System.out.println(&quot;||     &quot; + lighthouseCats.get(1)+&quot; &quot;+ Math.round(catScoreAvg*10.0/10.0)+&quot; second(s)&quot;</span>
+        + &quot;        ||&quot;);
+<span class="nc" id="L249">        catScoreOne = 0.4;</span>
+<span class="nc" id="L250">        catScoreTwo = 0.4;</span>
+<span class="nc" id="L251">        catScoreThree = 0.4;</span>
+<span class="nc" id="L252">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L253">        System.out.println(&quot;||     &quot; + lighthouseCats.get(2)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 + &quot; second(s)&quot;</span>
+        + &quot;                   ||&quot;);
+<span class="nc" id="L255">        catScoreOne = 100;</span>
+<span class="nc" id="L256">        catScoreTwo = 100;</span>
+<span class="nc" id="L257">        catScoreThree = 100;</span>
+<span class="nc" id="L258">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L259">        System.out.println(&quot;||     &quot; + lighthouseCats.get(3)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                       ||&quot;);
+<span class="nc" id="L261">        catScoreOne = 89;</span>
+<span class="nc" id="L262">        catScoreTwo = 89;</span>
+<span class="nc" id="L263">        catScoreThree = 89;</span>
+<span class="nc" id="L264">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L265">        System.out.println(&quot;||     &quot; + lighthouseCats.get(4)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                       ||&quot;);
+<span class="nc" id="L267">        catScoreOne = 58;</span>
+<span class="nc" id="L268">        catScoreTwo = 58;</span>
+<span class="nc" id="L269">        catScoreThree = 58;</span>
+<span class="nc" id="L270">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L271">        System.out.println(&quot;||     &quot; + lighthouseCats.get(5)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0</span>
+        + &quot;                           ||&quot;);
+        
+<span class="nc" id="L274">        System.out.println(&quot;=====================================================================&quot;);</span>
+        //About me
+<span class="nc" id="L276">        System.out.println(&quot;||     &quot; + blogfolioRoutes.get(1)+ &quot;                                             ||&quot;);</span>
+<span class="nc" id="L277">        catScoreOne = 92;</span>
+<span class="nc" id="L278">        catScoreTwo = 92;</span>
+<span class="nc" id="L279">        catScoreThree = 99;</span>
+<span class="nc" id="L280">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L281">        System.out.println(&quot;||     &quot; + lighthouseCats.get(0)+&quot; &quot;+ Math.round(catScoreAvg*10.0/10.0)+ &quot;                                    ||&quot;);</span>
+<span class="nc" id="L282">        catScoreOne = 0.6;</span>
+<span class="nc" id="L283">        catScoreTwo = 0.5;</span>
+<span class="nc" id="L284">        catScoreThree = 0.6;</span>
+<span class="nc" id="L285">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L286">        System.out.println(&quot;||     &quot; + lighthouseCats.get(1)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0+&quot; seconds&quot;</span>
+        + &quot;        ||&quot;);
+<span class="nc" id="L288">        catScoreOne = 0.6;</span>
+<span class="nc" id="L289">        catScoreTwo = 0.4;</span>
+<span class="nc" id="L290">        catScoreThree = 0.6;</span>
+<span class="nc" id="L291">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L292">        System.out.println(&quot;||     &quot; + lighthouseCats.get(2)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot; second(s)                   ||&quot;);
+<span class="nc" id="L294">        catScoreOne = 91;</span>
+<span class="nc" id="L295">        catScoreTwo = 91;</span>
+<span class="nc" id="L296">        catScoreThree =91;</span>
+<span class="nc" id="L297">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L298">        System.out.println(&quot;||     &quot; + lighthouseCats.get(3)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                        ||&quot;);
+<span class="nc" id="L300">        catScoreOne = 96;</span>
+<span class="nc" id="L301">        catScoreTwo = 96;</span>
+<span class="nc" id="L302">        catScoreThree = 96;</span>
+<span class="nc" id="L303">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L304">        System.out.println(&quot;||     &quot; + lighthouseCats.get(4)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                       ||&quot;);
+<span class="nc" id="L306">        catScoreOne = 54;</span>
+<span class="nc" id="L307">        catScoreTwo = 54;</span>
+<span class="nc" id="L308">        catScoreThree = 54;</span>
+<span class="nc" id="L309">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L310">        System.out.println(&quot;||     &quot; + lighthouseCats.get(5)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                           ||&quot;);
+        
+<span class="nc" id="L313">        System.out.println(&quot;=====================================================================&quot;);</span>
+        
+<span class="nc" id="L315">        System.out.println(&quot;||     &quot; + blogfolioRoutes.get(2)+ &quot;                                             ||&quot;);</span>
+<span class="nc" id="L316">        catScoreOne = 91;</span>
+<span class="nc" id="L317">        catScoreTwo = 93;</span>
+<span class="nc" id="L318">        catScoreThree = 93;</span>
+<span class="nc" id="L319">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L320">        System.out.println(&quot;||     &quot; + lighthouseCats.get(0)+&quot; &quot;+ Math.round(catScoreAvg*10.0/10.0)+ &quot;                                    ||&quot;);</span>
+<span class="nc" id="L321">        catScoreOne = 0.3;</span>
+<span class="nc" id="L322">        catScoreTwo = 0.7;</span>
+<span class="nc" id="L323">        catScoreThree = 0.7;</span>
+<span class="nc" id="L324">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L325">        System.out.println(&quot;||     &quot; + lighthouseCats.get(1)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0+&quot; seconds&quot;</span>
+        + &quot;        ||&quot;);
+<span class="nc" id="L327">        catScoreOne = 0.7;</span>
+<span class="nc" id="L328">        catScoreTwo = 0.3;</span>
+<span class="nc" id="L329">        catScoreThree = 0.7;</span>
+<span class="nc" id="L330">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L331">        System.out.println(&quot;||     &quot; + lighthouseCats.get(2)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                             ||&quot;);
+<span class="nc" id="L333">        catScoreOne = 87;</span>
+<span class="nc" id="L334">        catScoreTwo = 87;</span>
+<span class="nc" id="L335">        catScoreThree = 87;</span>
+<span class="nc" id="L336">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L337">        System.out.println(&quot;||     &quot; + lighthouseCats.get(3)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                        ||&quot;);
+<span class="nc" id="L339">        catScoreOne = 96;</span>
+<span class="nc" id="L340">        catScoreTwo = 100;</span>
+<span class="nc" id="L341">        catScoreThree = 96;</span>
+<span class="nc" id="L342">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L343">        System.out.println(&quot;||     &quot; + lighthouseCats.get(4)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                       ||&quot;);
+<span class="nc" id="L345">        catScoreOne = 54;</span>
+<span class="nc" id="L346">        catScoreTwo = 54;</span>
+<span class="nc" id="L347">        catScoreThree = 54;</span>
+<span class="nc" id="L348">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L349">        System.out.println(&quot;||     &quot; + lighthouseCats.get(5)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                           ||&quot;);
+        
+
+<span class="nc" id="L353">        System.out.println(&quot;=====================================================================&quot;);</span>
+        
+<span class="nc" id="L355">        System.out.println(&quot;||     &quot; + blogfolioRoutes.get(3)+ &quot;                                           ||&quot;);</span>
+<span class="nc" id="L356">        catScoreOne = 82;</span>
+<span class="nc" id="L357">        catScoreTwo = 81;</span>
+<span class="nc" id="L358">        catScoreThree = 82;</span>
+<span class="nc" id="L359">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L360">        System.out.println(&quot;||     &quot; + lighthouseCats.get(0)+&quot; &quot;+ Math.round(catScoreAvg*10.0/10.0)+ &quot;                                    ||&quot;);</span>
+<span class="nc" id="L361">        catScoreOne = 2.3;</span>
+<span class="nc" id="L362">        catScoreTwo = 2.4;</span>
+<span class="nc" id="L363">        catScoreThree = 2.3;</span>
+<span class="nc" id="L364">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L365">        System.out.println(&quot;||     &quot; + lighthouseCats.get(1)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/10.0 +&quot; seconds&quot;</span>
+        + &quot;        ||&quot;);
+<span class="nc" id="L367">        catScoreOne = 0.9;</span>
+<span class="nc" id="L368">        catScoreTwo = 0.9;</span>
+<span class="nc" id="L369">        catScoreThree = 0.9;</span>
+<span class="nc" id="L370">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L371">        System.out.println(&quot;||     &quot; + lighthouseCats.get(2)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 + &quot; seconds&quot;</span>
+        + &quot;                     ||&quot;);
+<span class="nc" id="L373">        catScoreOne = 77;</span>
+<span class="nc" id="L374">        catScoreTwo = 77;</span>
+<span class="nc" id="L375">        catScoreThree = 77;</span>
+<span class="nc" id="L376">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L377">        System.out.println(&quot;||     &quot; + lighthouseCats.get(3)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                        ||&quot;);
+<span class="nc" id="L379">        catScoreOne = 93;</span>
+<span class="nc" id="L380">        catScoreTwo = 93;</span>
+<span class="nc" id="L381">        catScoreThree = 93;</span>
+<span class="nc" id="L382">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L383">        System.out.println(&quot;||     &quot; + lighthouseCats.get(4)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                       ||&quot;);
+<span class="nc" id="L385">        catScoreOne = 54;</span>
+<span class="nc" id="L386">        catScoreTwo = 54;</span>
+<span class="nc" id="L387">        catScoreThree = 54;</span>
+<span class="nc" id="L388">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L389">        System.out.println(&quot;||     &quot; + lighthouseCats.get(5)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                           ||&quot;);
+
+<span class="nc" id="L392">        System.out.println(&quot;=====================================================================&quot;);</span>
+        
+<span class="nc" id="L394">        System.out.println(&quot;||     &quot; + blogfolioRoutes.get(4)+ &quot;                                                 ||&quot;); //blog</span>
+<span class="nc" id="L395">        catScoreOne = 96;</span>
+<span class="nc" id="L396">        catScoreTwo = 99;</span>
+<span class="nc" id="L397">        catScoreThree = 96;</span>
+<span class="nc" id="L398">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L399">        System.out.println(&quot;||     &quot; + lighthouseCats.get(0)+&quot; &quot;+ Math.round(catScoreAvg*10.0/10.0)+ &quot;                                    ||&quot;);</span>
+<span class="nc" id="L400">        catScoreOne = 0.7;</span>
+<span class="nc" id="L401">        catScoreTwo = 0.7;</span>
+<span class="nc" id="L402">        catScoreThree = 0.6;</span>
+<span class="nc" id="L403">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L404">        System.out.println(&quot;||     &quot; + lighthouseCats.get(1)+&quot; &quot;+Math.round(catScoreAvg)*10.0/10.0 +&quot; seconds&quot;</span>
+        + &quot;        ||&quot;);
+<span class="nc" id="L406">        catScoreOne = 0.7;</span>
+<span class="nc" id="L407">        catScoreTwo = 0.7;</span>
+<span class="nc" id="L408">        catScoreThree = 0.6;</span>
+<span class="nc" id="L409">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L410">        System.out.println(&quot;||     &quot; + lighthouseCats.get(2)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 + &quot; seconds&quot;</span>
+        + &quot;                     ||&quot;);
+<span class="nc" id="L412">        catScoreOne =91;</span>
+<span class="nc" id="L413">        catScoreTwo = 91;</span>
+<span class="nc" id="L414">        catScoreThree = 96;</span>
+<span class="nc" id="L415">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L416">        System.out.println(&quot;||     &quot; + lighthouseCats.get(3)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                        ||&quot;);
+<span class="nc" id="L418">        catScoreOne = 96;</span>
+<span class="nc" id="L419">        catScoreTwo = 96;</span>
+<span class="nc" id="L420">        catScoreThree = 96;</span>
+<span class="nc" id="L421">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L422">        System.out.println(&quot;||     &quot; + lighthouseCats.get(4)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                                       ||&quot;);
+<span class="nc" id="L424">        catScoreOne = 54;</span>
+<span class="nc" id="L425">        catScoreTwo = 54;</span>
+<span class="nc" id="L426">        catScoreThree = 54;</span>
+<span class="nc" id="L427">        catScoreAvg = (catScoreOne + catScoreTwo + catScoreThree) / 3;</span>
+<span class="nc" id="L428">        System.out.println(&quot;||     &quot; + lighthouseCats.get(5)+&quot; &quot;+ Math.round(catScoreAvg)*10.0/ 10.0 </span>
+        + &quot;                           ||&quot;);
+<span class="nc" id="L430">        System.out.println(&quot;=====================================================================&quot;);</span>
+
+    
+<span class="nc" id="L433">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
