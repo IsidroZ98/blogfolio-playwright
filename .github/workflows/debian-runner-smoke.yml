@@ -1,0 +1,35 @@
+name: Docker Debian Self Hosted Runner Smoke Test
+
+on:
+    workflow_dispatch:
+    push:
+        branches: [main]
+jobs:
+    debian_runner_test:
+        name: Playwright Test (Debian / Pi 5)
+        runs-on: [self-hosted, debian]
+
+        steps:
+            - name: Checkout repo
+            uses: actions/checkout@v4
+            
+            - name: Verify-Environment
+            run: |
+                echo "Runner name: $RUNNER_NAME"
+                uname -a
+                java --verision
+                mvn -version
+                node -v
+                npm -v
+            
+            - name: Run Playwright Maven tests
+            run: |
+                cd playwright-demo
+                mvn -B test
+            
+            - name: Upload Allure reults
+            if: always()
+            uses: actions/upload-artifact@v4
+            with:
+                name: allure-results-debian
+                path: playwright-demo/allure-results
