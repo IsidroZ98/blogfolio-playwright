@@ -17,8 +17,12 @@ jobs:
       - name: System info
         run: |
           uname -a
-          
 
+      - name: Force system Node
+        run: |
+          which node
+          node -v
+          echo "/usr/bin" >> $GITHUB_PATH
       - name: Java & Node sanity check
         run: |
           java -version
