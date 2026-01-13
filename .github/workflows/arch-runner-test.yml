@@ -1,0 +1,36 @@
+name: Arch Runner Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  arch-test:
+    runs-on: [self-hosted, linux, arm64, arch]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: System info
+        run: |
+          uname -a
+          cat /etc/os-release
+
+      - name: Java & Node sanity check
+        run: |
+          java -version
+          mvn -version
+          node -v
+          npm -v
+     - name: Run Playwright Maven tests
+        run: |
+         cd playwright-demo
+         mvn -B test
+
+    - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-debian
+          path: playwright-demo/allure-results

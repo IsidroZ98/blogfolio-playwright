@@ -34,3 +34,4 @@ jobs:
         with:
           name: allure-results-debian
           path: playwright-demo/allure-results
+    
