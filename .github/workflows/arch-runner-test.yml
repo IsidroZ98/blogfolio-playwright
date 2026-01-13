@@ -18,11 +18,12 @@ jobs:
         run: |
           uname -a
 
-      - name: Force system Node
+      - name: Force system Node (no which)
         run: |
-          which node
-          node -v
-          echo "/usr/bin" >> $GITHUB_PATH
+          /usr/bin/node -v
+          /usr/bin/npm -v
+          echo "/usr/bin" >> "$GITHUB_PATH"
+
       - name: Java & Node sanity check
         run: |
           java -version
