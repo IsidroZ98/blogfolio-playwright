@@ -8,6 +8,7 @@ on:
 jobs:
   arch-test:
     runs-on: [self-hosted, linux, arm64, arch]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,14 +24,15 @@ jobs:
           mvn -version
           node -v
           npm -v
-     - name: Run Playwright Maven tests
-        run: |
-         cd playwright-demo
-         mvn -B test
 
-    - name: Upload Allure results
+      - name: Run Playwright Maven tests
+        run: |
+          cd playwright-demo
+          mvn -B test
+
+      - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-results-debian
+          name: allure-results-arch
           path: playwright-demo/allure-results
