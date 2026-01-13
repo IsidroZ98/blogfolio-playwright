@@ -7,6 +7,7 @@ on:
 
 jobs:
   arch-test:
+    name: Playwright Test (Arch / Pi 5)
     runs-on: [self-hosted, linux, arm64, arch]
 
     steps:
