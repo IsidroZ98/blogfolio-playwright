@@ -17,7 +17,7 @@ jobs:
       - name: System info
         run: |
           uname -a
-          cat /etc/os-release
+          
 
       - name: Java & Node sanity check
         run: |
